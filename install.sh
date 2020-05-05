@@ -4,7 +4,7 @@
 #   and performs some optional setup for existing repositories.
 #   See the documentation in the project README for more information.
 #
-# Version: 2005.051600-746460
+# Version: 2005.051621-681cdf
 
 # The list of hooks we can manage with this script
 MANAGED_HOOK_NAMES="
@@ -1242,7 +1242,7 @@ update_release_clone() {
 clone_release_repository() {
 
     if [ -z "$GITHOOKS_CLONE_URL" ]; then
-        GITHOOKS_CLONE_URL="https://github.com/rycus86/githooks.git"
+        GITHOOKS_CLONE_URL="https://github.com/cashforce/githooks.git"
     fi
 
     if [ -z "$GITHOOKS_CLONE_BRANCH" ]; then
