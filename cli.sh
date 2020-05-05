@@ -11,7 +11,7 @@
 # See the documentation in the project README for more information,
 #   or run the `git hooks help` command for available options.
 #
-# Version: 2004.272234-8af36c
+# Version: 2005.051600-746460
 
 #####################################################
 # Prints the command line help for usage and
@@ -1587,7 +1587,7 @@ clone_release_repository() {
     GITHOOKS_CLONE_BRANCH=$(git config --global githooks.autoupdate.updateCloneBranch)
 
     if [ -z "$GITHOOKS_CLONE_URL" ]; then
-        GITHOOKS_CLONE_URL="https://github.com/rycus86/githooks.git"
+        GITHOOKS_CLONE_URL="https://github.com/cashforce/githooks.git"
     fi
 
     if [ -z "$GITHOOKS_CLONE_BRANCH" ]; then

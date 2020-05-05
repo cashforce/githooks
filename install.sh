@@ -4,7 +4,7 @@
 #   and performs some optional setup for existing repositories.
 #   See the documentation in the project README for more information.
 #
-# Version: 2004.272234-8af36c
+# Version: 2005.051600-746460
 
 # The list of hooks we can manage with this script
 MANAGED_HOOK_NAMES="
@@ -368,25 +368,25 @@ find_git_hook_templates() {
     mark_directory_as_target "$GIT_TEMPLATE_DIR" "hooks"
     if [ "$TARGET_TEMPLATE_DIR" != "" ]; then return; fi
 
-    # 2. from git config
-    if [ "$USE_CORE_HOOKSPATH" = "yes" ]; then
-        mark_directory_as_target "$(git config --global core.hooksPath)"
-    else
-        mark_directory_as_target "$(git config --global init.templateDir)" "hooks"
-    fi
+    # 2. from git config (using init.templateDir)
+    mark_directory_as_target "$(git config --global init.templateDir)" "hooks"
     if [ "$TARGET_TEMPLATE_DIR" != "" ]; then return; fi
 
-    # 3. from the default location
+    # 3. from git config (using core.hooksPath)
+    mark_directory_as_target "$(git config --global core.hooksPath)"
+    if [ "$TARGET_TEMPLATE_DIR" != "" ]; then return; fi
+
+    # 4. from the default location
     mark_directory_as_target "/usr/share/git-core/templates/hooks"
     if [ "$TARGET_TEMPLATE_DIR" != "" ]; then return; fi
 
-    # 4. Setup new folder if running interactively and no folder is found by now
+    # 5. Setup new folder if running interactively and no folder is found by now
     if is_non_interactive; then
         setup_new_templates_folder
         return # we are finished either way here
     fi
 
-    # 5. try to search for it on disk
+    # 6. try to search for it on disk
     printf 'Could not find the Git hook template directory. '
     printf 'Do you want to search for it? [y/N] '
     read -r DO_SEARCH </dev/tty
